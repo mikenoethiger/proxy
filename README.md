@@ -60,6 +60,8 @@ docker run -d \
     image:latest
 ```
 
+> **Notice:** You always need to explicitely `--expose` the ports that you want to publish to the proxy.
+
 Links
 =====
 
