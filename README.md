@@ -25,13 +25,14 @@ docker run --detach \
     --network proxy \
     --publish 80:80 \
     --publish 443:443 \
-    --volume $PWD/max_body_size.conf:/etc/nginx/conf.d/max_body_size.conf:ro \
     --volume /etc/nginx/certs \
     --volume /etc/nginx/vhost.d \
     --volume /usr/share/nginx/html \
     --volume /var/run/docker.sock:/tmp/docker.sock:ro \
     jwilder/nginx-proxy
 ```
+
+> Notice: You may want to increase the max_body_size if you host a webservice behind the proxy that needs to upload larger files. To do so, add the option: `--volume $PWD/max_body_size.conf:/etc/nginx/conf.d/max_body_size.conf:ro \`. This assumes you are the directory where this repository is checked out. Change the upload limit in the `max_body_size.conf` file.
 
 Step 3: Create the Letsencrypt Proxy Companion
 ----------------------------------------------
@@ -56,6 +57,7 @@ For example:
 docker run -d \ 
     --env "VIRTUAL_HOST=domain.org,www.domain.org" \
     --env "LETSENCRYPT_HOST=domain.org,www.domain.org" \
+    --network proxy \
     --expose 80 \
     image:latest
 ```
