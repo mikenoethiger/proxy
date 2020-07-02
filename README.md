@@ -46,8 +46,8 @@ docker run --detach \
     jrcs/letsencrypt-nginx-proxy-companion
 ```
 
-Connect a Container to the Proxy
-================================
+Step 4: Connect a Container to the Proxy
+----------------------------------------
 
 Now whenever you start a new container, add the `VIRTUAL_HOST` and `LETSENCRYPT_HOST` environment variables with all the domains you want to have proxied. 
 
